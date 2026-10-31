@@ -1,0 +1,10 @@
+# Make GitHub show this repo as Python.
+# HTML study guides and LaTeX reports are documentation, not code.
+*.html linguist-documentation
+*.tex linguist-documentation
+guias/** linguist-documentation
+versiones-previas/** linguist-documentation
+informe/** linguist-documentation
+
+# Jupyter notebooks count as Python.
+*.ipynb linguist-language=Python
