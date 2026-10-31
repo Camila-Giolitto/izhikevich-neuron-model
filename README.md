@@ -4,6 +4,8 @@ Numerical simulation of the Izhikevich (2003) spiking neuron model: a single neu
 
 Assignment 1 for the *Neural Networks 2026* course — FaMAF, Universidad Nacional de Córdoba (Argentina).
 
+**English versions:** [report (PDF)](informe/english/izhikevich_report_EN.pdf) · [notebook](notebooks/TP1_Izhikevich_EN.ipynb) — both include Part 2 (the network).
+
 ![The eight firing patterns reproduced from Figure 2 of Izhikevich (2003): membrane potential v (top) and input current I (bottom) for each neuron type](docs/eight_firing_patterns.png)
 
 *The eight firing patterns from Figure 2 of the paper, reproduced with RK4: membrane potential `v` (top) and input current `I` (bottom) for each neuron type.*
@@ -78,9 +80,13 @@ izhikevich-neuron-model/
 │   └── eight_firing_patterns.png   # figure shown in this README
 ├── informe/
 │   ├── grupo36_mariel_anachuri_camila_giolitto_martin_robins_tp1.pdf   # submitted report (Spanish)
-│   └── latex/                 # LaTeX source of the report (main.tex + figuras/)
+│   ├── latex/                 # LaTeX source of the report (main.tex + figuras/)
+│   └── english/
+│       ├── izhikevich_report_EN.pdf   # English version of the report + Part 2 (network)
+│       └── latex/                     # its LaTeX source (REVTeX 4.2: main.tex, references.bib, figures/)
 ├── notebooks/
-│   └── TP1_Izhikevich.ipynb   # group's final notebook
+│   ├── TP1_Izhikevich.ipynb      # group's final notebook (Spanish)
+│   └── TP1_Izhikevich_EN.ipynb   # English version: Part 1 step by step, integration-step error, Part 2 (network)
 ├── simulaciones/
 │   ├── codigo/                # modules and scripts that generate the figures
 │   │   ├── izhikevich.py          # model, RK4/Euler, currents I1–I4, reset
@@ -106,13 +112,13 @@ python figura_ocho_casos_informe.py output.png   # 2x4 figure of the eight firin
 python figura_red_informe.py output.png
 ```
 
-Open the notebooks with `jupyter notebook notebooks/TP1_Izhikevich.ipynb`.
+Open the notebooks with `jupyter notebook notebooks/TP1_Izhikevich.ipynb` (Spanish) or `jupyter notebook notebooks/TP1_Izhikevich_EN.ipynb` (English, includes Part 2).
 
 ---
 
 **Dependencies:** Python 3.10+, `numpy`, `scipy`, `matplotlib`, `jupyter`.
 
-> The report, notebooks, study guides and code comments are in Spanish, as this was original coursework.
+> The original coursework (submitted report, notebooks, study guides and code comments) is in Spanish. The English report and the English notebook are translations of the submitted report and of the group notebook, with Part 2 added.
 
 ---
 
