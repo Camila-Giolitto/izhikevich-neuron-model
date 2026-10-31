@@ -4,6 +4,10 @@ Numerical simulation of the Izhikevich (2003) spiking neuron model: a single neu
 
 Assignment 1 for the *Neural Networks 2026* course — FaMAF, Universidad Nacional de Córdoba (Argentina).
 
+![The eight firing patterns reproduced from Figure 2 of Izhikevich (2003): membrane potential v (top) and input current I (bottom) for each neuron type](docs/eight_firing_patterns.png)
+
+*The eight firing patterns from Figure 2 of the paper, reproduced with RK4: membrane potential `v` (top) and input current `I` (bottom) for each neuron type.*
+
 ---
 
 ## The model
@@ -27,7 +31,7 @@ if v ≥ 30 mV  →  v ← c,   u ← u + d
 | `c` | Reset value of `v` after a spike (mV) |
 | `d` | Increment of `u` after a spike |
 
-> Note: the earlier version of the assignment (Sept 24) used `b, c, v−, Δu` instead of `a, b, c, d`. That notation only appears in `versiones-previas/` and in `simulaciones/codigo/figuras_teoria.py`.
+> Note: the earlier version of the assignment (Sept 24) used `b, c, v−, Δu` instead of `a, b, c, d`. That notation only appears in `simulaciones/codigo/figuras_teoria.py`.
 
 ---
 
@@ -70,13 +74,13 @@ if v ≥ 30 mV  →  v ← c,   u ← u + d
 izhikevich-neuron-model/
 ├── README.md
 ├── requirements.txt
+├── docs/
+│   └── eight_firing_patterns.png   # figure shown in this README
 ├── informe/
 │   ├── grupo36_mariel_anachuri_camila_giolitto_martin_robins_tp1.pdf   # submitted report (Spanish)
-│   ├── latex/                 # LaTeX source of the report (main.tex + figuras/)
-│   └── borrador-introduccion.docx   # introduction draft
+│   └── latex/                 # LaTeX source of the report (main.tex + figuras/)
 ├── notebooks/
-│   ├── TP1_Izhikevich.ipynb   # group's final notebook
-│   └── versiones-previas/     # earlier versions
+│   └── TP1_Izhikevich.ipynb   # group's final notebook
 ├── simulaciones/
 │   ├── codigo/                # modules and scripts that generate the figures
 │   │   ├── izhikevich.py          # model, RK4/Euler, currents I1–I4, reset
@@ -87,8 +91,7 @@ izhikevich-neuron-model/
 │   │   └── resultados.json        # spike times and metrics
 │   ├── figs/                  # generated figures
 │   └── tp1_izhikevich.ipynb   # extended notebook (additional analysis)
-├── guias/                     # HTML study guides (open in a browser)
-└── versiones-previas/         # earlier LaTeX report and material from the Sept 24 assignment
+└── guias/                     # HTML study guides (open in a browser)
 ```
 
 ### How to run

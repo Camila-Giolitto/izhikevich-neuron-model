@@ -3,7 +3,6 @@
 *.html linguist-documentation
 *.tex linguist-documentation
 guias/** linguist-documentation
-versiones-previas/** linguist-documentation
 informe/** linguist-documentation
 
 # Jupyter notebooks count as Python.
