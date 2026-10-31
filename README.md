@@ -67,7 +67,7 @@ if v ≥ 30 mV  →  v ← c,   u ← u + d
 ## Repository structure
 
 ```
-Neurona-Izhikevich/
+izhikevich-neuron-model/
 ├── README.md
 ├── requirements.txt
 ├── informe/
