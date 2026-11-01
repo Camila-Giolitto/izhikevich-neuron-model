@@ -3,10 +3,8 @@
 %  Numerical simulation of the Izhikevich neuron model
 %
 %  English version of the submitted report
-%  (../../grupo36_mariel_anachuri_camila_giolitto_martin_robins_tp1.pdf).
-%  Sections I-IV are a translation of the submitted text, section by
-%  section. Section V adds Part 2 of the assignment (optional): the
-%  network of 1000 neurons, which was not part of the submitted report.
+%  (../../grupo36_mariel_anachuri_camila_giolitto_martin_robins_tp1.pdf),
+%  translated section by section.
 %
 %  Every figure and number comes from ../../../notebooks/TP1_Izhikevich_EN.ipynb.
 %  Compile with pdfLaTeX + BibTeX (REVTeX 4.2; in Overleaf: Recompile).
@@ -53,10 +51,7 @@ neuronal activity were reproduced (RS, IB, CH, FS, LTS, TC1, TC2 and RZ). The si
 qualitatively reproduce the patterns of the original paper and show that their diversity
 depends on both the model parameters and the input current. Finally, the effect of the
 integration step was analysed. Spike times depend on $h$ and their error accumulates with each
-spike because of the reset, although the qualitative patterns are not altered. In an optional
-second part, the 1000-neuron network program of the original paper was translated into Python:
-it shows asynchronous activity at $\approx 7.8$ Hz with episodes of synchronisation, and
-removing the self-connections does not change the collective dynamics.
+spike because of the reset, although the qualitative patterns are not altered.
 
 \smallskip
 \noindent{\footnotesize\textbf{Keywords:} Izhikevich model, numerical simulation, differential
@@ -321,104 +316,6 @@ reproduces a wide variety of neuronal behaviours without describing in detail th
 that give rise to them. It thus lies at the middle point between detail and simplicity put
 forward by Dayan and Abbott~\cite{dayan2001}, which makes it possible to simulate networks
 with a large number of neurons~\cite{izhikevich2003}.
-
-% =====================================================================
-\section{Part 2 (optional): network of 1000 neurons}
-
-In the optional second part of the assignment, the MATLAB program of Section~IV of
-Ref.~\cite{izhikevich2003} was translated into Python and simulated, and two variants of it
-were explored.
-
-\begin{figure*}[t]
-  \centering
-  \includegraphics[width=0.92\textwidth]{fig5_network.png}
-  \caption{Network of 1000 neurons during 1000\,ms (seed 2026). Top: raster plots (each dot is
-  a spike; excitatory neurons 1--800 in black and inhibitory neurons 801--1000 in red) of
-  (a) the literal translation of the paper's MATLAB code, (b) the same network with
-  $s_{ii} = 0$, (c) the Euler--Maruyama variant and (d) the variant with continuous coupling
-  $z(v)$. Bottom: population rate (spikes per neuron in 1\,ms bins, in Hz); on the left (a)
-  and (b), on the right (a) in grey, (c) and (d).}
-  \label{fig:network}
-\end{figure*}
-
-\subsection{Network model and numerical method}
-
-The network has $N_e = 800$ excitatory and $N_i = 200$ inhibitory neurons governed by
-Eqs.~\eqref{eq:v}--\eqref{eq:reset}, with heterogeneous parameters ($r_i \sim U(0,1)$):
-$a_i = 0.02$, $b_i = 0.2$, $c_i = -65 + 15r_i^2$, $d_i = 8 - 6r_i^2$ for the excitatory
-neurons (from RS to CH) and $a_i = 0.02 + 0.08r_i$, $b_i = 0.25 - 0.05r_i$, $c_i = -65$,
-$d_i = 2$ for the inhibitory ones (from LTS to FS). The weights are
-$S = [\,0.5R_E \mid -R_I\,]$, with $R_E$ and $R_I$ uniform in $[0,1]$ and $s_{ij}$ the weight
-from neuron $j$ to neuron $i$. At each 1\,ms step the input is
-$I_i = I_i^{\rm ext} + I_i^{\rm syn}$, with thalamic noise $I_i^{\rm ext} = 5\xi_i$
-(excitatory) or $2\xi_i$ (inhibitory), $\xi_i \sim N(0,1)$, and pulse coupling
-$I_i^{\rm syn} = \sum_{j \in F} s_{ij}$, where $F$ is the set of neurons that fired; $v$ is
-updated with two Euler steps of 0.5\,ms and $u$ with one of 1\,ms. The matrix $S$ is dense and
-its diagonal is not set to zero: there are self-connections $s_{ii} \neq 0$. All the
-simulations start from $v = -65$\,mV, $u = b\,v$, last 1000\,ms and use the seed 2026.
-
-\emph{Euler--Maruyama variant.} Between spikes,
-$dV_i = (0.04V_i^2 + 5V_i + 140 - U_i)\,dt + \sigma_i\,dW_i$ and
-$dU_i = a_i(b_iV_i - U_i)\,dt$, with $\sigma_i = 5$ or 2, keeping the synaptic jumps and the
-reset separate, with step $h = 0.1$\,ms. The scheme is
-$Y_{n+1} = Y_n + f(Y_n)\,h + \sigma\sqrt{h}\,\xi_n$~\cite{kloeden1992}: the Wiener increment
-over a step $h$ has variance $h$, hence the factor $\sqrt{h}$. In the literal reproduction of
-the MATLAB code this factor does not apply, because there the noise is a discrete current
-drawn once per millisecond, not a Wiener process.
-
-\emph{Variant with $z(v)$.} We propose replacing the pulse coupling with the continuous
-current $I_i^{\rm syn}(t) = \sum_j s_{ij}\,z(v_j(t))$, with $z(v) = (87 + v)/450 - 0.0193$
-and $v$ clipped at 30\,mV, leaving everything else unchanged. $z(v)$ is not a spike detector:
-at rest it is $\approx 0.03$, so each neuron receives a permanent background input. It is a
-different model from that of Figure~3 of Ref.~\cite{izhikevich2003}, and we use it only as a
-comparative experiment.
-
-\subsection{Results}
-
-In Figure~\ref{fig:network}(a), asynchronous background activity is observed, interrupted by
-episodes of synchronisation: vertical bands in which a large part of the population fires at
-the same time, with peaks of the population rate at $\approx 40$, 160, 290 and 410\,ms. The
-first one occurs at the start, with all the neurons at $v = -65$\,mV. After $\approx 450$\,ms
-the bands are weaker. The literal network emits 7765 spikes, with a mean rate of 7.77\,Hz
-(7.82\,Hz for the excitatory neurons and 7.57\,Hz for the inhibitory ones), and the spectrum
-of the population rate for $t > 100$\,ms has its maximum at $\approx 7.8$\,Hz.
-
-With the same seed and without self-connections [Figure~\ref{fig:network}(b)], the network
-emits 7561 spikes (7.56\,Hz). The large episodes appear at similar times ($\approx 40$, 150,
-290 and 400--420\,ms), with somewhat different amplitudes, while the individual spikes differ.
-Repeating the comparison with 20 seeds ($t > 100$\,ms), the mean rate is
-$7.19 \pm 0.13$\,Hz with the diagonal and $7.17 \pm 0.13$\,Hz without it; the difference is
-$0.02 \pm 0.12$\,Hz.
-
-In the Euler--Maruyama variant [Figure~\ref{fig:network}(c)] there is a very intense initial
-episode between 3.5 and 33.4\,ms, in which each neuron fires about 24 times (24\,357 spikes),
-followed by almost 200\,ms of near silence; then asynchronous activity with bands appears,
-with a mean rate of 8.23\,Hz for $t > 100$\,ms. With continuous coupling $z(v)$
-[Figure~\ref{fig:network}(d)] there is also an asynchronous background with bands, wider at
-the beginning (8804 spikes; 8.35\,Hz for $t > 100$\,ms, compared with 7.54\,Hz for the
-literal network over the same interval).
-
-\subsection{Discussion}
-
-The literal translation reproduces what the paper describes for its Figure~3: asynchronous
-activity with mean rates of $\approx 8$\,Hz and occasional episodes of synchronisation. The
-large episodes repeat every $\approx 120$\,ms, which matches the spectral maximum at
-$\approx 7.8$\,Hz, close to the $\alpha$ band ($\approx 10$\,Hz) reported in the paper. The
-self-connections contribute a single weight to each neuron (at most 0.5 if it is excitatory,
-or down to $-1$ if it is inhibitory) against the sum of the inputs from the whole network:
-removing them changes the individual spikes, but not the mean rate (the difference over
-20 seeds is much smaller than its spread) nor the structure of the synchronous episodes. We
-conclude that the diagonal of $S$ does not qualitatively modify the dynamics.
-
-In the Euler--Maruyama variant, the synaptic jumps are applied every 0.1\,ms; we infer that,
-with all the neurons starting from the same state, the first synchronous discharge generates
-jumps that push $v$ above 30\,mV again in the following steps, which produces the initial
-episode of $\approx 24$ spikes per neuron. Once this transient is over, the dynamics (rate
-$\approx 8$\,Hz with bands) is comparable to that of the original. The variant with $z(v)$ is
-a different model: the synaptic input does not depend on the firing events but on the
-potential of all the neurons at all times, so it includes a permanent background that raises
-the rate ($\approx 8.3$ versus $\approx 7.5$\,Hz) and changes the shape of the episodes; it
-does not reproduce Figure~3 of the paper and serves only as a comparison.
 
 % =====================================================================
 \bibliography{references}

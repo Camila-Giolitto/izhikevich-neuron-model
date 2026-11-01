@@ -4,7 +4,7 @@ Numerical simulation of the Izhikevich (2003) spiking neuron model: a single neu
 
 Assignment 1 for the *Neural Networks 2026* course — FaMAF, Universidad Nacional de Córdoba (Argentina).
 
-**English versions:** [report (PDF)](informe/english/izhikevich_report_EN.pdf) · [notebook](notebooks/TP1_Izhikevich_EN.ipynb) — both include Part 2 (the network).
+**English versions:** [report (PDF)](informe/english/izhikevich_report_EN.pdf) · [notebook](notebooks/TP1_Izhikevich_EN.ipynb) — the notebook also includes Part 2 (the network).
 
 ![The eight firing patterns reproduced from Figure 2 of Izhikevich (2003): membrane potential v (top) and input current I (bottom) for each neuron type](docs/eight_firing_patterns.png)
 
@@ -82,7 +82,7 @@ izhikevich-neuron-model/
 │   ├── grupo36_mariel_anachuri_camila_giolitto_martin_robins_tp1.pdf   # submitted report (Spanish)
 │   ├── latex/                 # LaTeX source of the report (main.tex + figuras/)
 │   └── english/
-│       ├── izhikevich_report_EN.pdf   # English version of the report + Part 2 (network)
+│       ├── izhikevich_report_EN.pdf   # English version of the submitted report
 │       └── latex/                     # its LaTeX source (REVTeX 4.2: main.tex, references.bib, figures/)
 ├── notebooks/
 │   ├── TP1_Izhikevich.ipynb      # group's final notebook (Spanish)
@@ -118,7 +118,7 @@ Open the notebooks with `jupyter notebook notebooks/TP1_Izhikevich.ipynb` (Spani
 
 **Dependencies:** Python 3.10+, `numpy`, `scipy`, `matplotlib`, `jupyter`.
 
-> The original coursework (submitted report, notebooks, study guides and code comments) is in Spanish. The English report and the English notebook are translations of the submitted report and of the group notebook, with Part 2 added.
+> The original coursework (submitted report, notebooks, study guides and code comments) is in Spanish. The English report is a translation of the submitted report; the English notebook is a translation of the group notebook, with Part 2 added.
 
 ---
 
